@@ -1,21 +1,48 @@
 /**
- * - TopTen Hadoop and HBase Assignment
+ * <h1>TopTen Hadoop and HBase Assignment</h1>
  * In this exercise the aim is to read a record of users from an xml stored in HDFS, execute a MapReduce job that calculates
  * the top ten users in the list with more reputation and stores the output in a HBase table.
- * <p>
- * - Arguments:
+ * <h2>Arguments</h2>
  * In order to compile the program the commands needed are:
- * -- Compile the program with HADOOP_CLASSPATH
- * export HADOOP_CLASSPATH=$($HADOOP_HOME/bin/hadoop classpath)
- * javac -cp $HADOOP_CLASSPATH -d output src/main/java/TopTen.java
- * -- Generate the jar using the files in the previous compiled folder
- * jar -cvf topten.jar -C output .
- * -- Execute the program passing as first argument the hdfs path where users.xml is and the HBase table name
- * $HADOOP_HOME/bin/hadoop jar topten.jar TopTen <HDFS_PATH>/users.xml topten
- * <p>
- * - Authors
- * -- Serghei Socolovschi (serghei@kth.se)
- * -- Angel Igareta (angel@kth.se)
+ * <ol>
+ *     <li>
+ *      Start necessary services
+ *      $HADOOP_HOME/bin/hdfs --daemon start namenode
+ *      $HADOOP_HOME/bin/hdfs --daemon start datanode
+ *      $HBASE_HOME/bin/start-hbase.sh
+ * </li>
+ * <li>
+ *      Create the HBase table topten with one column family info to store the id and reputation of users.
+ *      $HBASE_HOME/bin/hbase shell
+ *      [Inside hbase shell] create ’topten’, ’info’
+ * </li>
+ * <li>
+ *      Set necessary environment variables
+ *      export HADOOP_CLASSPATH=$($HADOOP_HOME/bin/hadoop classpath)
+ *      export HBASE_CLASSPATH=$($HBASE_HOME/bin/hbase classpath)
+ *      export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HBASE_CLASSPATH
+ * </li>
+ * <li>
+ *      Compile the program
+ *      javac -cp $HADOOP_CLASSPATH -d output src/main/java/TopTen.java
+ * </li>
+ * <li>
+ *     Generate the jar using the files in the previous compiled folder
+ *     jar -cvf topten.jar -C output .
+ * </li>
+ * <li>
+ *     Execute the program passing as first argument the hdfs path where users.xml is and the HBase table name:
+ *     $HADOOP_HOME/bin/hadoop jar topten.jar TopTen <HDFS_PATH>/users.xml topten
+ * </li>
+ * </ol>
+ * <h2>Authors</h2>
+ * <ul>
+ * <li>
+ * Serghei Socolovschi (serghei@kth.se)
+ * </li>
+ * Angel Igareta (angel@kth.se)
+ * </li>
+ * </ul>
  */
 
 import org.apache.hadoop.conf.Configuration;
