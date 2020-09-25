@@ -40,7 +40,7 @@
  * <li>
  * Serghei Socolovschi (serghei@kth.se)
  * </li>
- * Angel Igareta (angel@kth.se)
+ * Angel Igareta (alih2@kth.se)
  * </li>
  * </ul>
  */
