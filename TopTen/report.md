@@ -1,34 +1,30 @@
 # TopTen Hadoop and HBase Assignment
 
-In this exercise the aim is to read a record of users from an xml stored in HDFS, execute a MapReduce job that calculates
-the top ten users in the list with more reputation and stores the output in a HBase table.
+In this exercise, the aim is to read a record of users from an XML file stored in HDFS, execute a MapReduce job that calculates
+the top ten users in the list with more reputation and store the output in an HBase table.
 
 ## Code description
 ### Configuration
-First of all, in the driver class the hadoop configuration with HBase resources is created. After this, we created a new Job 
+First of all, in the driver class, the Hadoop configuration with HBase resources is created. After this, we create a new Job 
 with no particular Cluster, a given configuration and a jobName "Top ten", setting TopTen class as jar class to submit the job 
 to the Resource Manager.
 
 ### Map Stage
-In order to specify the input to the map class, we made use of FileInputFormat. This element validates the input-specification of the job and
-splits up input files into logical splits which would be assigned to an individual mapper. In this case, as the file size is lower than 128MB,
+In order to specify the input to the map class, we made use of FileInputFormat. This class validates the input-specification of the job and splits up input files into logical splits that would be assigned to an individual mapper. In this case, as the file size is lower than 128MB,
 there will only be one split.
 
 Once the input is specified we set the Mapper for the job, its output key class and value class (matching the output types from TopTenMapper class).
 
-The mapper class receives the data from the users.xml, parses it and store into a local hashmap the values id and reputation of each valid user.
-We decided to use HashMap instead of the proposed TreeMap to avoid the extra computation of sorting the results by id, as in this case
-it is not required, only the values column. If instead of id, reputation was add as the key for TreeMap, the sorting would already be done,
-however, two users that have the same reputation would not appear in the results, as TreeMap keys must be unique.
+The mapper class receives the data from the users.xml, parses it and stores it into a local HashMap the properties 'id' and 'reputation' of each valid user.
+We decided to use HashMap instead of the proposed TreeMap to avoid the extra computation of sorting the results by the property 'id', as in this case it is not required, only the column reputation should be sorted eventually. If instead of id, reputation added as the key for TreeMap, the sorting would already be done, however, two users that have the same reputation would not appear in the results, as TreeMap keys must be unique.
 
 In order to output the records from the mapper in a serializable way, we added the user id separated by a dash to the user reputation, 
 resulting in texts like '<key>-<reputation>'. This allows us to send texts to the reducer more efficiently and not the Map object.
 
 ### Reduce Stage
-First, as proposed in the assignment description, we are setting to one the number of reduce tasks for this job with setNumReduceTasks method. 
+First, as proposed in the assignment description, we are setting to one the number of reduce tasks for this job with the 'setNumReduceTasks' method. 
 This is done to avoid distributing our input into multiple reducers and having different top-ten results. Instead, we do everything in
-one cluster and one reducer. Then, the HBase dependency jars as well as jars for any of the configured job classes are added to the job configuration,
-so the job can ship them to the cluster. Finally we use TableMapReduceUtil to specify to the reducer that the output should be to an HBase Table.
+one cluster and one reducer. Then, the HBase dependency jars as well as jars for any of the configured job classes are added to the job configuration, so the job can ship them to the cluster. Finally, we use TableMapReduceUtil to specify to the reducer that the output should be to an HBase Table.
 
 Inside the reducer, we just iterated over the records received, parsing them back and inserting them into the HBase table as speicfied in the assignment.
 ```scala
