@@ -2,11 +2,12 @@
 <h4 align="center">Assignment for first lab of the Data-Intensive Computing course of the EIT Digital data science master at <a href="https://www.kth.se/en">KTH</a></h4>
 
 <p align="center">
-  <img alt="KTH" src="https://img.shields.io/badge/EIT%20Digital-KTH-%231954a6?style=flat-square">
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/angeligareta/spark-hadoop-hbase-overview?style=flat-square">
+  <img alt="KTH" src="https://img.shields.io/badge/EIT%20Digital-KTH-%231954a6?style=flat-square" />  
+  <img alt="License" src="https://img.shields.io/github/license/angeligareta/spark-kafka-cassandra-overview?style=flat-square" />
+  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/angeligareta/spark-hadoop-hbase-overview?style=flat-square" />
 </p>
 
-This project aims to read a record of users from an XML file stored in HDFS, execute a MapReduce job that calculates the top ten users in the list with more reputation, and store the output in an HBase table.
+This project aims to read a record of users from an XML file stored in HDFS, execute a MapReduce job that calculates the top ten users in the list with more reputation, and store the output in an HBase table. In addition, there are extra excercises (guided by the professor) in the [notebooks](notebooks) folder.
 
 ## Code description
 ## Configuration
@@ -82,10 +83,9 @@ $HADOOP_HOME/bin/hadoop jar topten.jar TopTen <HDFS_PATH>/users.xml topten
 
 ## Outcome
 After running the program and scanning the table 'topten' the results are the following:
+
 ![topten results](src/output.jpeg)
 
 ## Authors
-```
-Serghei Socolovschi serghei@kth.se
-Angel Igareta alih2@kth.se
-```
+- Serghei Socolovschi [serghei@kth.se](mailto:serghei@kth.se)
+- Angel Igareta [alih2@kth.se](mailto:alih2@kth.se)
