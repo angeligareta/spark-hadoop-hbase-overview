@@ -84,7 +84,7 @@ $HADOOP_HOME/bin/hadoop jar topten.jar TopTen <HDFS_PATH>/users.xml topten
 ## Outcome
 After running the program and scanning the table 'topten' the results are the following:
 
-![topten results](src/output.jpeg)
+![topten results](project/output.jpeg)
 
 ## Authors
 - Serghei Socolovschi [serghei@kth.se](mailto:serghei@kth.se)
