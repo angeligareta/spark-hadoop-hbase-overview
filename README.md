@@ -3,7 +3,7 @@
 
 <p align="center">
   <img alt="KTH" src="https://img.shields.io/badge/EIT%20Digital-KTH-%231954a6?style=flat-square" />  
-  <img alt="License" src="https://img.shields.io/github/license/angeligareta/spark-kafka-cassandra-overview?style=flat-square" />
+  <img alt="License" src="https://img.shields.io/github/license/angeligareta/spark-hadoop-hbase-overview?style=flat-square" />
   <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/angeligareta/spark-hadoop-hbase-overview?style=flat-square" />
 </p>
 
